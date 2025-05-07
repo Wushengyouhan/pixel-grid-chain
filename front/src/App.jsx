@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import './App.css';
 import { getContractConfig } from './config';
 import { getAvatarUrl, getAvatarFromUIAvatars, generateLetterAvatar, getAvatarUrlAsync } from './utils/avatarUtils';
+import logo from './assets/logo.png';
 
 // BuyEarth合约ABI
 import contractABI from './abi.json'; // 正确导入ABI
@@ -21,7 +22,6 @@ const colorMap = {
   3: "#0000FF", // 蓝色
   4: "#FFFF00", // 黄色
   5: "#00FFFF", // 青色
-  6: "#FFA500", // 橙色
   7: "custom"   // 自定义颜色
 };
 
@@ -504,10 +504,11 @@ const App = () => {
       <Card>
         <Header>
           <Logo>
-            <LogoIcon>🧩</LogoIcon>
+            <LogoIcon>
+              <img src={logo} alt="Logo" style={{ width: '100%', height: '100%' }} />
+            </LogoIcon>
             <LogoTextGroup>
               <LogoText>Pixel Grid</LogoText>
-              <LogoSubtitle>Blockchain-based pixel art canvas</LogoSubtitle>
             </LogoTextGroup>
           </Logo>
           <WalletSection>
@@ -638,7 +639,6 @@ const App = () => {
                         $selected={selectedColor === intValue} 
                         onClick={() => handleColorSelection(value)}
                       >
-                        <CustomColorLabel>Custom</CustomColorLabel>
                         <CustomColorInput
                           type="color"
                           value={customColor}
@@ -967,7 +967,8 @@ const Logo = styled.div`
 `;
 
 const LogoIcon = styled.div`
-  font-size: 28px;
+  width: 60px;
+  height: 60px;
 `;
 
 const LogoTextGroup = styled.div`
@@ -1310,15 +1311,16 @@ const CustomColorContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 0;
-  width: 85px;
-  height: 85px;
+  width: 45px;
+  height: 45px;
   border-radius: 10px;
   background-color: ${props => props.$selected ? '#f8f0ff' : '#ffffff'};
   border: ${props => props.$selected ? '2px solid #FF00FF' : '1px solid #ddd'};
   box-shadow: ${props => props.$selected ? '0 0 12px rgba(255, 0, 255, 0.5)' : '0 2px 5px rgba(0, 0, 0, 0.1)'};
   transition: all 0.3s ease;
-  padding: 8px;
+  padding: 0;
   cursor: pointer;
   
   &:hover {
@@ -1352,8 +1354,8 @@ const CustomColorLabel = styled.div`
 `;
 
 const CustomColorInput = styled.input`
-  width: 65px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border: 2px solid #ccc;
   padding: 0;
   background: none;
@@ -1363,7 +1365,7 @@ const CustomColorInput = styled.input`
   z-index: 10;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  margin-top: 5px;
+  margin: 0;
 
   &:hover {
     opacity: 1;
